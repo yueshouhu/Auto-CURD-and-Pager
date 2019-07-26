@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+
+<div style="width: 80%;margin:0 auto">
+
+    <h1>学生列表</h1>
+    <div>
+        <button id="idAdd" type="button" class="btn btn-default" style="margin-right: 0 ;float: right">添加</button>
+        <button id="idSeek" type="button" class="btn btn-default" style="margin-right: 0 ;float: right">查找</button>
+        <button id="idReload" type="button" class="btn btn-default" style="margin-right: 0 ;float: right">刷新</button>
+        <button id="idBack" type="button" class="btn btn-default" style="margin-right: 0 ;float: right">
+            <a>返回上一级</a>
+        </button>
+
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button id="idCheckAll" type="button" class="btn btn-default">全选</button>
+        <button id="idRerverseAll" type="button" class="btn btn-default">反选</button>
+        <button id="idCancelAll" type="button" class="btn btn-default">取消选中</button>
+        <button id="idEditMode" type="button" class="btn btn-default">进入编辑模式</button>
+        <button id="idSave" type="button" class="btn btn-default">保存编辑</button>
+        <button id="idDel" type="button" class="btn btn-default">批量删除</button>
+    </div>
+
+    <table class="table table-bordered">
+        <thead id="table_th">
+        </thead>
+        <tbody id="table_td">
+        </tbody>
+    </table>
+    {#    <ul id="idPagination" class="pagination">#}
+    {##}
+    {#    </ul>#}
+    <ul class="pagination pagination-sm " style="float: right" id="pager">
+
+    </ul>
+</div>
+{#//批量删除模态框#}
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="alert alert-danger" role="alert" style="height: 80px">
+            <h3>确定要删除这些选中的记录吗？</h3>
+            <div><input type="text" id="delNid"></div>
+            {#            style="display: none"#}
+        </div>
+        <div class="modal-footer">
+            <span id="delerrormsg" style="color: red"></span>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="delconfirm">确定</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  添加信息模态框 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">添加信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span id="adderrormsg" style="color: red"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="savebtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  查找信息模态框 -->
+<div class="modal fade" id="seekModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">查询信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="seekForm">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span id="seekerrormsg" style="color: red"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="seekConfirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/static/jquery-3.3.1/jquery-3.3.1.js"></script>
+<script src="/static/CURD_list.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $.Api("/asset-json.html/","");
+        //第一个参数是获取数据的url，第二个是返回上一级的url
+    });
+    {#$(function () {#}
+    {#    $.changePager(1);#}
+    {# });#}
+
+
+</script>
+</body>
+</html>
